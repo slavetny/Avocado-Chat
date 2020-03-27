@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "659061760791",
+    "firebase_url": "https://avocado-chat-ef306.firebaseio.com",
+    "project_id": "avocado-chat-ef306",
+    "storage_bucket": "avocado-chat-ef306.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659061760791:android:0d9541e3631a7dd861cd52",
+        "android_client_info": {
+          "package_name": "com.avocado.message"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659061760791-slfhe0mo5npa1h153qq31uaujbt6g2hi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-30u_VD-qv4OecS8cupl7OCV9sxNrI0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659061760791-slfhe0mo5npa1h153qq31uaujbt6g2hi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.avocado.chat
+package com.avocado.message
 
 import org.junit.Test
 
