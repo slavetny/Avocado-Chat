@@ -19,15 +19,10 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
     private var presenter: ChatPresenter? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var adapter: MessageAdapter? = null
-    private var messageList: ArrayList<Message>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        messageList = ArrayList()
-
-        initRecyclerView()
 
         presenter = ChatPresenter(this)
         presenter?.getMessages()
@@ -48,15 +43,21 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
         adapter?.notifyDataSetChanged()
 
         recyclerView.adapter = adapter
+
+        recyclerView.scrollToPosition(messageList.size - 1)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
             R.id.sendButton -> {
-                presenter?.sendMessage(Message(inputField.text.toString(), "message"))
+                if (!inputField.text.isEmpty()) {
+                    presenter?.sendMessage(Message(inputField.text.toString(), "message"))
+                    inputField.text.clear()
+                } else {
+                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show()
+                }
             }
-
         }
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="60dp"
     android:background="@color/colorPrimary"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/inputField"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:hint="@string/message_input_hint"
         android:paddingLeft="12dp"
         android:background="@drawable/circle_corners_view"
@@ -20,11 +20,11 @@
 
     <ImageButton
         android:id="@+id/sendButton"
-        android:layout_width="64dp"
-        android:layout_height="48dp"
+        android:layout_width="48dp"
+        android:layout_height="35dp"
         android:src="@drawable/ic_send_32dp"
         android:scaleType="fitCenter"
-        android:padding="12dp"
+        android:padding="4dp"
         android:background="@drawable/circle_corners_view"
         android:backgroundTint="@color/colorAccent"/>
 
