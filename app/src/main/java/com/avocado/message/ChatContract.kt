@@ -6,13 +6,25 @@ interface ChatContract {
 
     interface ChatModel {
 
+        interface OnMessagesFinished {
+
+            fun onMessagesFinished(messageList: ArrayList<String>)
+
+            fun onMessagesFailure()
+
+        }
+
         fun sendInRemoteStorage(message: Message)
+
+        fun getByRemoteStorage(onFinished: OnMessagesFinished)
 
     }
 
     interface ChatPresenter {
 
         fun sendMessage(message: Message)
+
+        fun getMessages()
 
     }
 

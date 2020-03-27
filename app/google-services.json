@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "659061760791-bubt5sm1k8s55vc1r4u6ftta0ov8nk1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avocado.message",
+            "certificate_hash": "6d69554ee7e2839f9fdace204a1be149d48aa5ec"
+          }
+        },
+        {
           "client_id": "659061760791-slfhe0mo5npa1h153qq31uaujbt6g2hi.apps.googleusercontent.com",
           "client_type": 3
         }
