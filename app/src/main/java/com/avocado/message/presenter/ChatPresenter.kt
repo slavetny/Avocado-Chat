@@ -20,10 +20,10 @@ class ChatPresenter(val view: ChatContract.ChatView) : ChatContract.ChatPresente
         chatModel?.getByRemoteStorage(this)
     }
 
-    override fun onMessagesFinished(messageList: ArrayList<String>) {
+    override fun onMessagesFinished(messageList: ArrayList<Message>) {
         var list = ArrayList<Message>()
 
-        list.add(Message(messageList.get(0), "message"))
+        list.addAll(messageList)
 
         view.loadMessages(list)
     }

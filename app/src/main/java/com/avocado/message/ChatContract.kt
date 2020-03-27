@@ -8,7 +8,7 @@ interface ChatContract {
 
         interface OnMessagesFinished {
 
-            fun onMessagesFinished(messageList: ArrayList<String>)
+            fun onMessagesFinished(messageList: ArrayList<Message>)
 
             fun onMessagesFailure()
 
