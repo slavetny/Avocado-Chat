@@ -1,5 +1,7 @@
 package com.avocado.message.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.avocado.chat.ChatContract
 import com.avocado.chat.domain.entity.Message
+import com.avocado.chat.domain.utils.openGalleryForPickingImage
 import com.avocado.chat.presenter.ChatPresenter
 import com.avocado.message.R
 import com.avocado.message.ui.adapter.MessageAdapter
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.input_field.*
 
@@ -30,6 +32,7 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
         initRecyclerView()
 
         sendButton.setOnClickListener(this)
+        attachButton.setOnClickListener(this)
     }
 
     private fun initRecyclerView() {
@@ -52,12 +55,24 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
 
             R.id.sendButton -> {
                 if (!inputField.text.isEmpty()) {
-                    presenter?.sendMessage(Message(inputField.text.toString(), "message"))
+                    presenter?.sendMessage(Message(inputField.text.toString(), null, "message"))
                     inputField.text.clear()
                 } else {
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            R.id.attachButton -> {
+                openGalleryForPickingImage(1000)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 1000){
+            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
         }
     }
 }

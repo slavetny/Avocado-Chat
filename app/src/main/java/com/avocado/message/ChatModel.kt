@@ -60,7 +60,7 @@ class ChatModel : ChatContract.ChatModel {
 
                 try {
                     for (i in p0.children.iterator().next().children) {
-                        messageList?.add(Message(i.value.toString(), "message"))
+                        messageList?.add(Message(i.value.toString(), null, "message"))
                     }
                 } catch (e: Exception) {
                     e.fillInStackTrace()
