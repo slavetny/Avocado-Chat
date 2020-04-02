@@ -1,5 +1,7 @@
 package com.avocado.chat
 
+import android.graphics.Bitmap
+import android.net.Uri
 import com.avocado.chat.domain.entity.Message
 
 interface ChatContract {
@@ -17,6 +19,8 @@ interface ChatContract {
         fun sendInRemoteStorage(message: Message)
 
         fun getByRemoteStorage(onFinished: OnMessagesFinished)
+
+        fun sendPhotoInRemoteStorage(photo: Uri?)
 
     }
 

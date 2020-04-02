@@ -1,17 +1,21 @@
 package com.avocado.chat
 
+import android.net.Uri
 import com.avocado.chat.domain.entity.Message
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.lang.Exception
-
 
 class ChatModel : ChatContract.ChatModel {
 
     private var database: DatabaseReference? = null
     private var messageList: ArrayList<Message>? = null
+    private var storage: StorageReference? = null
 
     init {
         database = FirebaseDatabase.getInstance().reference
+        storage = FirebaseStorage.getInstance().getReferenceFromUrl("gs://avocado-chat-ef306.appspot.com/")
 
         messageList = ArrayList()
     }
@@ -21,35 +25,6 @@ class ChatModel : ChatContract.ChatModel {
     }
 
     override fun getByRemoteStorage(onFinished: ChatContract.ChatModel.OnMessagesFinished) {
-//        database?.addChildEventListener(object: ChildEventListener {
-//
-//            override fun onCancelled(p0: DatabaseError) {
-//
-//            }
-//
-//            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-//
-//            }
-//
-//            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-//
-//            }
-//
-//            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-//                messageList?.clear()
-//
-//                for (i in p0.children.iterator()) {
-//                    messageList?.add(Message(i.value.toString(), "message"))
-//                }
-//
-//                onFinished.onMessagesFinished(messageList!!)
-//            }
-//
-//            override fun onChildRemoved(p0: DataSnapshot) {
-//
-//            }
-//        })
-
         database?.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
 
@@ -60,7 +35,7 @@ class ChatModel : ChatContract.ChatModel {
 
                 try {
                     for (i in p0.children.iterator().next().children) {
-                        messageList?.add(Message(i.value.toString(), null, "message"))
+                        messageList?.add(Message("message", i.value.toString()))
                     }
                 } catch (e: Exception) {
                     e.fillInStackTrace()
@@ -71,13 +46,12 @@ class ChatModel : ChatContract.ChatModel {
         })
     }
 
-//    private fun gioag(p0: DataSnapshot) {
-//        var message = p0.children.iterator().next().value
-//
-//        for (i in p0.children.iterator()) {
-//            onFinished.onMessagesFinished(messageList!!)
-//
-//            message
-//        }
-//    }
+    override fun sendPhotoInRemoteStorage(photo: Uri?) {
+        storage?.child("photo")?.child(photo.toString())
+
+        storage?.putFile(photo!!)
+            ?.addOnSuccessListener {
+                // success
+            }
+    }
 }

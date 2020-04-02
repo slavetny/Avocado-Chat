@@ -13,7 +13,11 @@ class ChatPresenter(val view: ChatContract.ChatView) : ChatContract.ChatPresente
     }
 
     override fun sendMessage(message: Message) {
-        chatModel?.sendInRemoteStorage(message)
+        when (message.type) {
+            "message" -> chatModel?.sendInRemoteStorage(message)
+
+            "photo" -> chatModel?.sendPhotoInRemoteStorage(message.image)
+        }
     }
 
     override fun getMessages() {

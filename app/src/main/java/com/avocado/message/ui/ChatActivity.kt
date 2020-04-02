@@ -55,7 +55,7 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
 
             R.id.sendButton -> {
                 if (!inputField.text.isEmpty()) {
-                    presenter?.sendMessage(Message(inputField.text.toString(), null, "message"))
+                    presenter?.sendMessage(Message("message", inputField.text.toString()))
                     inputField.text.clear()
                 } else {
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show()
@@ -72,7 +72,7 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener, ChatContract.Cha
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == 1000){
-            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+            presenter?.sendMessage(Message("photo", "", data?.data))
         }
     }
 }
